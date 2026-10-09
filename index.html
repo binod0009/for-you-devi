@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -122,9 +123,17 @@
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.18); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.18);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
     .bg-heart {
@@ -136,20 +145,38 @@
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0.6); opacity: 0; }
-      20% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+      0% {
+        transform: translateY(100vh) scale(0.6);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- Background music -->
+  <audio id="bgMusic" src="song.mp3" loop preload="auto"></audio>
 
   <div class="card" id="questionCard">
     <div class="heart-icon">💖</div>
     <div class="name-tag">Hey Devi ✨</div>
     <p class="love-note">
-      I've had feelings for you ever since the first day we met, and I've been waiting for the right moment to tell you...
+      I've had feelings for you ever since the first day we met, and I've been waiting for the right moment to tell
+      you...
     </p>
     <h1>I love you!<br>Will you be mine?</h1>
     <div class="btn-container">
@@ -169,6 +196,16 @@
     const yesBtn = document.getElementById('yesBtn');
     const questionCard = document.getElementById('questionCard');
     const celebration = document.getElementById('celebration');
+    const bgMusic = document.getElementById('bgMusic');
+
+    // Attempt to start music on first touch/click anywhere on screen
+    function startMusic() {
+      bgMusic.play().catch(() => { });
+      window.removeEventListener('click', startMusic);
+      window.removeEventListener('touchstart', startMusic);
+    }
+    window.addEventListener('click', startMusic);
+    window.addEventListener('touchstart', startMusic);
 
     function teleportNoButton(e) {
       if (e) {
@@ -197,6 +234,9 @@
     noBtn.addEventListener('click', teleportNoButton);
 
     yesBtn.addEventListener('click', () => {
+      // Ensure audio plays when she clicks Yes
+      bgMusic.play().catch(() => { });
+
       questionCard.style.display = 'none';
       celebration.style.display = 'block';
       spawnLotsOfHearts();
@@ -222,4 +262,5 @@
     }
   </script>
 </body>
+
 </html>
