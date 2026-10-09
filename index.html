@@ -26,35 +26,43 @@
 
     .card {
       background: rgba(255, 255, 255, 0.96);
-      padding: 40px 25px;
+      padding: 35px 25px;
       border-radius: 24px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
       width: 90%;
-      max-width: 380px;
+      max-width: 400px;
       position: relative;
       z-index: 10;
     }
 
     .heart-icon {
-      font-size: 55px;
-      margin-bottom: 12px;
+      font-size: 50px;
+      margin-bottom: 10px;
       animation: pulse 1.2s infinite;
     }
 
     .name-tag {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 700;
       color: #ff4d6d;
       letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .love-note {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 18px;
+      line-height: 1.5;
+      font-style: italic;
     }
 
     h1 {
       font-size: 24px;
       color: #333;
-      margin-bottom: 30px;
-      line-height: 1.4;
+      margin-bottom: 25px;
+      line-height: 1.35;
     }
 
     .btn-container {
@@ -140,6 +148,10 @@
   <div class="card" id="questionCard">
     <div class="heart-icon">💖</div>
     <div class="name-tag">Hey Devi ✨</div>
+    <p class="love-note">
+      I've been in love with you from the first day I saw you.<br>
+      I wanted to tell you since last semester...
+    </p>
     <h1>I love you!<br>Will you be mine?</h1>
     <div class="btn-container">
       <button id="yesBtn">Yes! 💕</button>
@@ -165,7 +177,6 @@
         e.stopPropagation();
       }
 
-      // Safe screen boundaries
       const btnW = noBtn.offsetWidth || 80;
       const btnH = noBtn.offsetHeight || 45;
       const pad = 20;
@@ -181,7 +192,6 @@
       noBtn.style.top = randY + 'px';
     }
 
-    // Dodges on mobile touch and desktop mouse hover before click triggers
     noBtn.addEventListener('touchstart', teleportNoButton, { passive: false });
     noBtn.addEventListener('pointerdown', teleportNoButton);
     noBtn.addEventListener('mouseover', teleportNoButton);
